@@ -28,12 +28,10 @@ public class Rainbow extends Application {
         float resolution = (float)0.001;
         float radiusBinnen = (float) 600;
         float radiusBuiten = (float) 700;
-        System.out.println((float)500/+(float)Math.PI);
         float increment = ((float)500.0/((float)Math.PI));
         for(float i = 0; i < Math.PI; i+= resolution) {
 
             graphics.setColor(Color.getHSBColor(i*increment/500.0f, 1, 1));
-            System.out.println(i*increment);
             float x1 = radiusBinnen * (float)Math.cos(i);
             float y1 = radiusBinnen * (float)Math.sin(i);
             float x2 = radiusBuiten * (float)Math.cos(i);
