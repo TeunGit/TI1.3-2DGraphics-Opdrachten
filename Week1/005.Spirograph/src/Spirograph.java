@@ -80,7 +80,7 @@ public class Spirograph extends Application {
 
         for (float i = 0; i < 2* Math.PI ; i+= resolution) {
             if(!rainbowLines) {
-
+                graphics.setColor(Color.getHSBColor(500.0f,1,1));
                 graphics.setColor(Color.BLACK);
             }else{
                 graphics.setColor(Color.getHSBColor(i * increment / 500.0f, 1, 1));
