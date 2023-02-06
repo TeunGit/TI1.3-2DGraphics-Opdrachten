@@ -55,7 +55,7 @@ public class Spirograph extends Application {
         primaryStage.setScene(new Scene(mainBox));
         primaryStage.setTitle("Spirograph");
 
-        primaryStage.show();;
+        primaryStage.show();
     }
     
     
@@ -65,17 +65,17 @@ public class Spirograph extends Application {
             translated = true;
         }
        graphics.scale(1,-1);
-        float resolution = (float)0.0001;
+        float resolution = (float)0.001;
         float scale = (float)0.5;
         //you can use Double.parseDouble(v1.getText()) to get a double value from the first textfield
         float a =(float)Double.parseDouble((v1.getText()));
         float b =(float)Double.parseDouble((v2.getText()));
         float c =(float)Double.parseDouble((v3.getText()));
         float d =(float)Double.parseDouble((v4.getText()));
-        float x =(float)0;
-        float y =(float)0;
-        float x2 = (float)0;
-        float y2 = (float)0;
+        float x = (float)(a * Math.cos(b * 0) + c * Math.cos(d *0));
+        float y = (float)(a * Math.sin(b * 0) + c * Math.sin(d * 0));
+        float x2;
+        float y2;
         float increment = ((float)500.0/((float)Math.PI*2));
 
         for (float i = 0; i < 2* Math.PI ; i+= resolution) {
@@ -87,9 +87,9 @@ public class Spirograph extends Application {
 
             }
             System.out.println(graphics.getColor());
+            x2 = (float)((a * Math.cos(b * i)) + (c * Math.cos(d *i)));
+            y2 = (float)((a * Math.sin(b * i)) + (c * Math.sin(d * i)));
             graphics.draw(new Line2D.Double(x, y, x2, y2));
-            x2 = a * (float) Math.cos(b * i) + c * (float)Math.cos(d *i);
-            y2 = a * (float)Math.sin(b * i) + c * (float)Math.sin(d * i);
             x = x2;
             y = y2;
         }
