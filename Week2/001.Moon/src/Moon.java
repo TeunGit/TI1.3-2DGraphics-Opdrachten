@@ -33,6 +33,17 @@ public class Moon extends Application {
         graphics.setTransform(new AffineTransform());
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
+        GeneralPath myShape = new GeneralPath();
+        myShape.moveTo(200,200);
+        myShape.curveTo(350,220,350,380,200,400);
+        myShape.curveTo(280,350,280,250,200,200);
+
+        myShape.closePath();
+
+        graphics.setColor(Color.BLACK);
+        graphics.fill(myShape);
+        graphics.draw( myShape);
+
     }
 
 
