@@ -33,7 +33,19 @@ public class Colors extends Application {
         graphics.setTransform(new AffineTransform());
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
+        Color[] colors = {Color.BLACK, Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.LIGHT_GRAY, Color.magenta, Color.ORANGE, Color.PINK, Color.RED,Color.WHITE,Color.YELLOW};
+        double x = 0;
+        double size = canvas.getWidth()/13;
+        for (int i = 0; i < 13 ; i++) {
+            Area square = new Area(new Rectangle2D.Double(x, 200, size,size));
+            graphics.setColor(colors[i]);
+            graphics.fill(square);
+            graphics.draw(square);
+            x = x + size;
+        }
+
     }
+
 
 
     public static void main(String[] args)
