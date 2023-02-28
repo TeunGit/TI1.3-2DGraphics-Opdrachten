@@ -18,7 +18,7 @@ public class YingYang extends Application {
     private ResizableCanvas canvas;
     final private double X =250;
     final private double Y = 150;
-    final private double SIZE = 60;
+    final private double SIZE = 100;
 
     @Override
     public void start(Stage primaryStage) throws Exception

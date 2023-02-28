@@ -36,7 +36,7 @@ public class GradientPaintExercise extends Application {
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
         Area rectangle = new Area(new Rectangle2D.Double(0,0, canvas.getWidth(),canvas.getHeight()));
-        float[] fractions = {(float)0.1,(float) 0.2,(float)0.3,(float)0.4,(float) 0.5,(float) 0.6,(float)0.7,(float) 0.8,(float)0.9,1};
+        float[] fractions = {0.1f,0.2f,0.3f,0.4f,0.5f,0.6f,0.7f,0.8f,0.9f,1};
         Color[] colors = {Color.BLACK, Color.BLUE, Color.CYAN, Color.GRAY, Color.GREEN, Color.magenta, Color.ORANGE, Color.PINK, Color.RED,Color.YELLOW};
         graphics.setPaint(new RadialGradientPaint(new Point2D.Double(canvas.getWidth()/2,canvas.getHeight()/2),500, MouseInfo.getPointerInfo().getLocation(), fractions,colors,MultipleGradientPaint.CycleMethod.REFLECT));
         graphics.fill(rectangle);
