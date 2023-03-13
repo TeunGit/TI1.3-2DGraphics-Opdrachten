@@ -8,8 +8,11 @@ import javafx.application.Application;
 
 import static javafx.application.Application.launch;
 
+import javafx.event.EventTarget;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -21,20 +24,20 @@ import org.jfree.fx.ResizableCanvas;
 public class MovingCharacter extends Application {
     private ResizableCanvas canvas;
     private BufferedImage[] tiles;
-    private BufferedImage currentFrame;
-    private AffineTransform affineTransform = new AffineTransform();
-    private int framecounter= 0;
+
 
 
     @Override
     public void start(Stage stage) throws Exception
     {
         try {
-            BufferedImage image = ImageIO.read(getClass().getResource("Week3/002.MovingCharacter/resources/images/sprite.png");
+            BufferedImage image = ImageIO.read(getClass().getResource("/images/sprite.png"));
             tiles = new BufferedImage[65];
             //knip de afbeelding op in 24 stukjes van 32x32 pixels.
-            for(int i = 0; i < 24; i++)
-                tiles[i] = image.getSubimage(32 * (i%6), 32 * (i/6), 32, 32);
+            for(int i = 0; i < 65; i++) {
+                tiles[i] = image.getSubimage(64 * (i%8),64*(i/8),64,64);
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,45 +58,68 @@ public class MovingCharacter extends Application {
                 last = now;
                 draw(g2d);
             }
-        }.start();
-
+        }.start();;
         stage.setScene(new Scene(mainPane));
         stage.setTitle("Moving Character");
         stage.show();
+        canvas.setOnMouseClicked(e -> onMouseClick(e));
         draw(g2d);
     }
 
-
+    int frame;
     public void draw(FXGraphics2D graphics)
     {
         graphics.setTransform(new AffineTransform());
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
 
+        AffineTransform affineTransform = new AffineTransform();
         affineTransform.translate(0,canvas.getHeight()/2);
-
-
-        graphics.drawImage(currentFrame,affineTransform,null );
+        affineTransform.translate(positionx,positiony);
+        graphics.drawImage(tiles[frame],affineTransform,null );
 
     }
-
-
+    double positionx = 0;
+    double positiony = 0;
+    boolean jumping = false;
+    boolean falling = false;
     public void update(double deltaTime)
     {
 
-        affineTransform.translate(10,0);
-        currentFrame = tiles[framecounter];
-        if(framecounter < tiles.length) {
-            framecounter++;
+        if(jumping){
+            if(positiony <= -100){
+                falling = true;
+            }
+            if(!falling && positiony > -100) {
+                positiony -= 1;
+                frame = 40+(-1*(int) -positiony/(100/5))%5;
+            }else if(positiony < 0 && falling){
+                positiony += 1;
+                frame = 44+(-1*(int)positiony/(100/3))%3;
+            }
+            if(positiony == 0){
+                jumping = false;
+                falling = false;
+            }
+
         }else{
-            framecounter = 0;
+            if(positionx + 64 >= canvas.getWidth()){
+                positionx = 0;
+            }else{
+                positionx += 1;
+            }
+            frame = 32+((int)positionx/10)%8 ;
         }
+
 
     }
 
     public static void main(String[] args)
     {
         launch(MovingCharacter.class);
+    }
+    private void onMouseClick(MouseEvent ev){
+        jumping = true;
     }
 
 }
