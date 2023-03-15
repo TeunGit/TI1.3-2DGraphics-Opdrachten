@@ -84,7 +84,6 @@ public class Spotlight extends Application {
         if (imageAsBackground) {
             AffineTransform tx = new AffineTransform();
             tx.scale(canvas.getWidth()/image.getWidth(),canvas.getHeight()/image.getHeight());
-
             graphics.drawImage(image, tx, null);
         } else {
             for (int i = 0; i < 100; i++) {
