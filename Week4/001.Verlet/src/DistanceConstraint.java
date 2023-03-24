@@ -1,10 +1,13 @@
 import org.jfree.fx.FXGraphics2D;
+
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
 public class DistanceConstraint implements Constraint {
 
     private double distance;
+    private double adjustmentDistance;
     private Particle a;
     private Particle b;
 
@@ -22,7 +25,7 @@ public class DistanceConstraint implements Constraint {
     public void satisfy() {
 
         double currentDistance = a.getPosition().distance(b.getPosition());
-        double adjustmentDistance = (currentDistance - distance) / 2;
+        adjustmentDistance = (currentDistance - distance) / 2;
 
         Point2D BA = new Point2D.Double(b.getPosition().getX() - a.getPosition().getX(), b.getPosition().getY() - a.getPosition().getY());
         double length = BA.distance(0, 0);
@@ -41,6 +44,11 @@ public class DistanceConstraint implements Constraint {
 
     @Override
     public void draw(FXGraphics2D g2d) {
+        g2d.setColor(Color.getHSBColor(0.25f/(float)(Math.abs(adjustmentDistance)+1),1,1));
         g2d.draw(new Line2D.Double(a.getPosition(), b.getPosition()));
+    }
+    public Particle[] getConnectedParticles(){
+        Particle[] particles = {a,b};
+        return particles;
     }
 }

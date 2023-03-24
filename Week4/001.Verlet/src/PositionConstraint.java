@@ -1,7 +1,7 @@
 import org.jfree.fx.FXGraphics2D;
 import java.awt.geom.Point2D;
 
-public class PositionConstraint implements Constraint {
+public class PositionConstraint implements Constraint  {
 
     private Particle particle;
     private Point2D fixedPosition;
@@ -18,6 +18,12 @@ public class PositionConstraint implements Constraint {
         if (particle != null) {
             particle.setPosition(fixedPosition);
         }
+    }
+
+    @Override
+    public Particle[] getConnectedParticles() {
+        Particle[] particles = {particle};
+        return particles;
     }
 
     @Override
