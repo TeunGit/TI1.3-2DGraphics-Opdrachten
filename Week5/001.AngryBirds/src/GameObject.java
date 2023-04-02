@@ -22,11 +22,11 @@ public class GameObject {
         this.body = body;
         this.offset = offset;
         this.scale = scale;
-        try {
-            image = ImageIO.read(getClass().getResource(imageFile));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            image = ImageIO.read(getClass().getResource(imageFile));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void draw(FXGraphics2D g2d) {
