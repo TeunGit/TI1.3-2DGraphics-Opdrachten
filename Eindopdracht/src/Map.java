@@ -86,7 +86,6 @@ public class Map extends GameObject{
         graphics.setPaint(floorPaint);
         Area floorShape = new Area(new Rectangle2D.Double(0,this.floor.getTransform().getTranslationY()-10, size,40));
         graphics.fill(floorShape);
-        graphics.draw(floorShape);
     }
 
     public double getSize(){

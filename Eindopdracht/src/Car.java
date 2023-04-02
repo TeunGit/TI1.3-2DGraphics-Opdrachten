@@ -86,12 +86,9 @@ public class Car extends GameObject {
             tx.scale(-(size * 2) / image.getWidth() * 1.5, size / image.getHeight() * 1.5);
         }
         tx.translate(-image.getWidth()/2, -image.getHeight()/2);
-        graphics.setPaint(null);
         if(!boostParticles.isEmpty()){
-            graphics.setPaint(null);
             graphics.setColor(Color.ORANGE);
             for (Shape particle: boostParticles) {
-
                 graphics.fill(particle);
             }
         }
